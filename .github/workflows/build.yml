@@ -1,0 +1,68 @@
+name: Build PDF
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install Pygments
+
+      - name: Build PDF file
+        uses: xu-cheng/latex-action@v2
+        with:
+          latexmk_shell_escape: true
+          root_file: main.tex
+
+      - name: Upload LaTeX logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LaTeX logs
+          path: main.log
+
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v4
+        with:
+          name: PDF
+          path: main.pdf
+
+      - name: Set outputs
+        id: vars
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "datetime=$(TZ='Europe/Vienna' date --iso-8601=s)" >> $GITHUB_OUTPUT
+
+      - name: Create Bundle
+        uses: astraljaeger/bundle-action@v2
+        with:
+          bundleInclude: ".bundleinclude"
+          bundle: ./bundle.zip
+          overrideExisting: true
+
+      - name: Release PDF
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: Release ${{ steps.vars.outputs.datetime }}
+          files: |
+            *.pdf
+            bundle.zip
