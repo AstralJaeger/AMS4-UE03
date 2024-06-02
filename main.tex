@@ -1,3 +1,4 @@
+
 \documentclass[a4paper,11pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -15,6 +16,7 @@
 \usepackage{float}
 \usepackage{caption}
 \usepackage{listings}
+\usepackage{wrapfig}
 \usepackage{minted}
 \usemintedstyle{vs}
 
@@ -49,6 +51,7 @@
 % Cover page
 \newcommand{\coverpage}{
     \thispagestyle{cover}
+    \pagenumbering{roman} % Start Roman numbering for the cover page
     \begin{center}
         {\includegraphics[height=3cm]{fh-logo}}\\[1cm]
         {\LARGE \thetitle}\\[0.5cm]
@@ -58,55 +61,176 @@
     \clearpage
 }
 
-\newcommand{\screenshot}[1]{
-    \begin{figure}[H]
-        \centering
-        \includegraphics[scale=0.375]{#1}
-    \end{figure}
-}
-
 % Author and subject
-\author{John Doe} % TODO: Change Autor
-\newcommand{\subject}{Exercise in Exerciseing} % TODO: Change Subject
+\author{Felix Hillebrand}
+\newcommand{\subject}{AMS4UE}
 
-\graphicspath{ {./images/} }
+\graphicspath{ {./images/}{./notebooks/images} }
 
 % Main document
 \begin{document}
+    % Color definitions
+    \definecolor{LightGray}{gray}{0.9}
+    \definecolor{DarkGray}{gray}{0.3}
 
- % TODO: Change Title
-\title{Subject~-~Exercise}
-\coverpage
+    \title{AMS~-~UE}
+    \coverpage
 
-\pagenumbering{roman}
-\clearpage
-\pagenumbering{arabic}
-\pagestyle{main}
+    \clearpage
+    \pagestyle{main}
+    \pagenumbering{arabic} % Start Arabic numbering for main content
 
-\chapter{Topic}
-\begin{enumerate}
-    % First main item
-    \item \label{item:backrefA} \hfill % Use hfill to move the figure to the next line
-    \begin{description}
-        \item[Aufgabe:] 
-         \hfill
-        \item[Lösung:] \hfill \newline % Use hfill to move the figure to the next line
-            Solution
-    \end{description}
-\end{enumerate}
-\newpage
+% ------------------------------------------
+% --        Main document starting        --
+% ------------------------------------------
 
-\chapter{Legal}
-Die Ausarbeitung der Aufgabe wurde durch:
+    \chapter{Spannbaum Prim}
+    \label{ch:spbprim}
+    Suchen Sie einen minimalen Spannbaum mit dem Algorithmus von Prim und stellen Sie diesen dar.
+    Welche Kosten hat dieser?
 
-\begin{itemize}
-    \item \texttt{OpenAI - GPT-4.5 Turbo}
-    \item \texttt{OpenAI - GPT-4.5 Vision}
-    \item \texttt{OpenAI - GPT-4o}
-    \item \texttt{Anthropic -- Claude 3 Opus}
-\end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{a01a_graph}
+        \label{fig:a01_graph}
+    \end{figure}
+
+    \newpage
+
+    \chapter{Spannbaum Kruskal}
+    \label{ch:sbkruskal}
+    Für den Graphen aus \hyperref[fig:a01_graph]{Beispiel~1} suchen Sie einen minimalen Spannbaum mit dem Algorithmus von
+    Kruskal und stellen Sie diesen dar. Unterscheidet sich dieser vom Spannbaum in Beispiel 1?
+
+    \newpage
+
+    \chapter{Minimale Spannbäume}
+    \label{ch:minSb}
+    \begin{enumerate}
+        \item Suchen Sie alle minimalen Spannbäume (MST) in folgendem Graph.
+        Welche Kosten weisen diese auf?
+        Stellen Sie die unterschiedlichen MST dar!
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\textwidth]{a03a_graph}
+            \label{fig:a03_graph}
+        \end{figure}
+        \item
+        \item Gegeben ein minimaler Spannbaum T von einem Graph $G$.
+        Wie kann geprüft werden ob es weitere MST in $G$ gibt oder ob $T$ einzigartig ist?
+    \end{enumerate}
+
+    \newpage
+
+    \chapter{Die MST-Heuristik für das TSP}
+    \label{ch:mstHeuristicTSP}
+    Eine bewährte Methode gute (wenn auch nicht optimale) Rundreisen zu finden, fußt auf minimalen Spannbäumen.
+    Bilden Sie für den Graphen $G$ (siehe Code unten), eine solche heuristische Rundreise mittels MST-Heuristik.
+    Ermitteln Sie dazu:
+
+    \begin{enumerate}[a)]
+        \item einen minimalen Spannbaum MST
+        \item einen gerichteten Graphen $G2$ bei dem jede Verbindung in MST durch eine Hin- und
+        eine Zurückkante dargestellt wird
+        \item einen Eulerkreis $k$ in $G2$ der in Linz beginnt und endet
+        \item einen Hamiltonkreis $r$ in $G$ in dem Sie $k$ folgen und bereits besuchte Knoten
+        überspringen
+    \end{enumerate}
+
+    \begin{minted}[
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        bgcolor=LightGray,
+        linenos,
+        breaklines
+    ]{python}
+G = nx.Graph()
+G.add_weighted_edges_from([
+    ("Wien", "Linz",184.4),
+    ("Wien", "Hagenberg",180),
+    ("Wien", "Graz",200.1),
+    ("Wien", "Salzburg",295),
+    ("Wien", "Steyr",166),
+    ("Wien", "Wels",197),
+    ("Linz", "Hagenberg",23),
+    ("Linz", "Graz",220.9),
+    ("Linz", "Salzburg",132.5),
+    ("Linz", "Wels",132.5),
+    ("Linz", "Steyr",132.5),
+    ("Salzburg", "Steyr",134),
+    ("Salzburg", "Graz",296),
+    ("Salzburg", "Wels",108),
+    ("Salzburg", "Hagenberg",155),
+    ("Graz", "Steyr",191),
+    ("Graz", "Wels",196),
+    ("Graz", "Hagenberg",243),
+    ("Wels", "Steyr",45.2),
+    ("Wels", "Hagenberg",57.2),
+    ("Steyr", "Hagenberg",43.6)
+])
+    \end{minted}
+
+    \newpage
+
+    \chapter{Minimale Spannbäume in gerichteten Graphen}
+    \label{ch:minSbDiGraph}
+    Recherchieren Sie nach minimalen Spannbäumen für gerichtete Graphen.
+    Sind die Algorithmen von Prim und Kruskal für gerichtete Graphen anwendbar?
+    Warum (nicht)?
+
+    \newpage
+
+    \chapter{PageRank}
+    \label{ch:pageRank}
+    Bestimmen Sie die Matrizen $\widetilde{A}$, $\widetilde{A}$ und $M$ für den Dämpfungsfaktor $d = 0.75$ und stellen Sie diese dar.
+    Berechnen Sie den PageRank, geben Sie den Vektor $R$ nach den ersten $3$ Iterationen aus dem Potenzverfahren an (Initialwert $R_0$, $R_1$, $R_2$, $R_3$) wobei die Zahl im Index für die Iteration steht.
+    Was bedeutet der PageRank?
+
+    \begin{figure}[H]
+        \includegraphics[width=0.3\textwidth]{a06a_graph}
+        \label{fig:a06_graph}
+    \end{figure}
+
+    \newpage
+
+    \chapter[Page Rank als Simulation]{Page~Rank als Simulation}
+    \label{ch:pageRankSim}
+
+    \begin{wrapfigure}{r}{0.32\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{a07a_cat}
+        \label{fig:a06_cat}
+    \end{wrapfigure}
+
+    Aurora hat in der Küche zu viel Katzengras erwischt und ist dementsprechend berauscht.
+    Sie können die Katze im untenstehenden Routinggraf der Wohnung Ihres Übungsleiters als „Random cat-agent“ annehmen,
+    der in jedem Zeitschritt zufällige Kanten wählt (auch zurück).
+    Wenn die Katze eines der drei Katzenbetten erreicht, legt sie sich dort schlafen (Katzenbetten sind Senken).
+    In welchem Bett wird Sie die Katze mit welcher Wahrscheinlichkeit nach einer sehr großen Anzahl an Zeitschritten auffinden?
+    Nach wie vielen Iterationen beträgt die Gesamtwahrscheinlichkeit, dass die Katze irgendein Bett erreicht, hat über 30\%?
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{a07a_graph}
+        \label{fig:a07_graph}
+    \end{figure}
 
 
-mit mehreren unterschiedlichen Prompts und Custom Instructions unterstützt.
+    \newpage
+
+    \chapter{Legal}
+    \label{ch:legal}
+    Die Ausarbeitung der Aufgabe wurde durch:
+
+    \begin{itemize}
+        \item \texttt{OpenAI - GPT-4.5 Turbo}
+        \item \texttt{OpenAI - GPT-4.5 Vision}
+        \item \texttt{OpenAI - GPT-4o}
+        \item \texttt{Anthropic -- Claude 3 Opus}
+    \end{itemize}
+
+    mit mehreren unterschiedlichen Prompts und Custom Instructions unterstützt.
 
 \end{document}

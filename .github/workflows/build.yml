@@ -15,20 +15,25 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install Pygments
         run: pip install Pygments
 
       - name: Build PDF file
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@3.2.0
         with:
           latexmk_shell_escape: true
           root_file: main.tex
+          args: |
+            -file-line-error 
+            -interaction=nonstopmode 
+            -synctex=1
+            -output-format=pdf
 
       - name: Upload LaTeX logs
         if: always()
@@ -37,11 +42,15 @@ jobs:
           name: LaTeX logs
           path: main.log
 
+      - name: Print logs
+        if: failure()
+        run: cat main.log
+
       - name: Upload PDF file
         uses: actions/upload-artifact@v4
         with:
           name: PDF
-          path: main.pdf
+          path: out/main.pdf
 
       - name: Set outputs
         id: vars
@@ -64,5 +73,5 @@ jobs:
           prerelease: false
           title: Release ${{ steps.vars.outputs.datetime }}
           files: |
-            *.pdf
+            out/*.pdf
             bundle.zip

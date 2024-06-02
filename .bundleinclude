@@ -2,4 +2,4 @@ LICENSE
 **/*.pdf
 **/*.tex
 images/*
-
+notebooks/**/*.ipynb
