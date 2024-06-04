@@ -33,6 +33,19 @@ jobs:
             -file-line-error 
             -interaction=nonstopmode 
             -synctex=1
+            -output-directory=.
+            -output-format=pdf
+
+      - name: Build PDF file (again)
+        uses: xu-cheng/latex-action@3.2.0
+        with:
+          latexmk_shell_escape: true
+          root_file: main.tex
+          args: |
+            -file-line-error 
+            -interaction=nonstopmode 
+            -synctex=1
+            -output-directory=.
             -output-format=pdf
 
       - name: Upload LaTeX logs
@@ -50,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: PDF
-          path: out/main.pdf
+          path: main.pdf
 
       - name: Set outputs
         id: vars
@@ -73,5 +86,5 @@ jobs:
           prerelease: false
           title: Release ${{ steps.vars.outputs.datetime }}
           files: |
-            out/*.pdf
+            main.pdf
             bundle.zip

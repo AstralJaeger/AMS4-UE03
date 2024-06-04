@@ -18,6 +18,7 @@
 \usepackage{listings}
 \usepackage{wrapfig}
 \usepackage{minted}
+\usepackage{subcaption}
 \usemintedstyle{vs}
 
 % Set default font to OpenSans
@@ -65,7 +66,7 @@
 \author{Felix Hillebrand}
 \newcommand{\subject}{AMS4UE}
 
-\graphicspath{ {./images/}{./notebooks/images} }
+\graphicspath{ {./images} }
 
 % Main document
 \begin{document}
@@ -89,10 +90,61 @@
     Suchen Sie einen minimalen Spannbaum mit dem Algorithmus von Prim und stellen Sie diesen dar.
     Welche Kosten hat dieser?
 
-    \begin{figure}[H]
+    \begin{figure}[htbp]
         \centering
-        \includegraphics[width=0.6\textwidth]{a01a_graph}
+        \includegraphics[height=0.3\textheight]{a01a_graph}
         \label{fig:a01_graph}
+    \end{figure}
+
+    \section{Lösung}
+
+    \begin{minted}[
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        bgcolor=LightGray,
+        linenos,
+        breaklines
+    ]{python}
+def prim(G: nx.Graph, start_node: Any):
+
+    if start_node not in G.nodes:
+        raise ValueError(f'Start node {start_node} not in graph {G.nodes}')
+
+    mst = nx.Graph()
+    visited = {start_node}
+    edges = [
+        (data['weight'], start_node, to)
+        for to, data in G[start_node].items()
+    ]
+    heapq.heapify(edges)
+
+    while edges:
+        weight, frm, to = heapq.heappop(edges)
+        if to in visited:
+            continue
+        visited.add(to)
+        mst.add_edge(frm, to, weight=weight)
+
+        for to_next, data in G[to].items():
+            if to_next not in visited:
+                heapq.heappush(edges, (data['weight'], to, to_next))
+
+    return mst
+    \end{minted}
+
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[height=0.2\textheight]{a01a_mst}
+            \caption{Minimal Spannbaum}
+            \label{fig:a01_mst}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[height=0.2\textheight]{a01a_graph_highlighted}
+            \caption{Minimaler Spannbaum auf dem Graphen}
+            \label{fig:a01_graph_highlighted}
+        \end{subfigure}
     \end{figure}
 
     \newpage
@@ -101,6 +153,33 @@
     \label{ch:sbkruskal}
     Für den Graphen aus \hyperref[fig:a01_graph]{Beispiel~1} suchen Sie einen minimalen Spannbaum mit dem Algorithmus von
     Kruskal und stellen Sie diesen dar. Unterscheidet sich dieser vom Spannbaum in Beispiel 1?
+
+    \section{Lösung}
+
+    \begin{minted}[
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        bgcolor=LightGray,
+        linenos,
+        breaklines
+    ]{python}
+
+    \end{minted}
+
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[height=0.2\textheight]{a01a_mst}
+            \caption{Minimal Spannbaum}
+            \label{fig:a02_mst}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+            \includegraphics[height=0.2\textheight]{a01a_graph_highlighted}
+            \caption{Minimaler Spannbaum auf dem Graphen}
+            \label{fig:a02_graph_highlighted}
+        \end{subfigure}
+    \end{figure}
 
     \newpage
 
