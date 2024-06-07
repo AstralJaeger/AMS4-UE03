@@ -49,6 +49,9 @@
 
   \titlespacing*{\chapter}{0pt}{*4}{*2.5}
 
+% Graphics path
+\graphicspath{ {./images/} }
+
 % Cover page
 \newcommand{\coverpage}{
     \thispagestyle{cover}
@@ -65,8 +68,6 @@
 % Author and subject
 \author{Felix Hillebrand}
 \newcommand{\subject}{AMS4UE}
-
-\graphicspath{ {./images} }
 
 % Main document
 \begin{document}
@@ -135,16 +136,20 @@ def prim(G: nx.Graph, start_node: Any):
 
     \begin{figure}[htbp]
         \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=6cm]{a01a_mst}
-            \caption{Minimal Spannbaum}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a01a_mst}
+            \caption{Minimaler Spannbaum}
             \label{fig:a01_mst}
         \end{subfigure}
-        \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=6cm]{a01a_graph_highlighted}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a01a_graph_highlighted}
             \caption{Minimaler Spannbaum auf dem Graphen}
             \label{fig:a01_graph_highlighted}
         \end{subfigure}
+        \caption{Gegenüberstellung der Spannbäume}
+        \label{fig:a01_comparison}
     \end{figure}
 
     Die Kosten des Spannbaumes sind 19.
@@ -203,16 +208,20 @@ def kruskal(G: nx.Graph):
 
     \begin{figure}[htbp]
         \centering
-        \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=6cm]{a02a_mst}
-            \caption{Minimal Spannbaum}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a02a_mst}
+            \caption{Minimaler Spannbaum}
             \label{fig:a02_mst}
         \end{subfigure}
-        \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=6cm]{a02a_graph_highlighted}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a02a_graph_highlighted}
             \caption{Minimaler Spannbaum auf dem Graphen}
             \label{fig:a02_graph_highlighted}
         \end{subfigure}
+        \caption{Gegenüberstellung der Spannbäume}
+        \label{fig:a02_comparison}
     \end{figure}
 
     Die Kosten des Spannbaumes sind 19.
@@ -346,6 +355,34 @@ G.add_weighted_edges_from([
     Sind die Algorithmen von Prim und Kruskal für gerichtete Graphen anwendbar?
     Warum (nicht)?
 
+    \section{Lösung}
+
+    Sowohl Prim's als auch Kruskal's Algorithmus kann nicht mit gerichteten Graphen umgehen.
+    Es gibt jedoch den \href{https://www.wikiwand.com/en/Edmonds%27_algorithm}{Algorithmus von Edmond's bzw. Chu–Liu/Edmond's} welcher das Minimale Spannbaum Problem für gerichtete Graphen Löst.
+
+    \subsection{Prombleme mit Prim's Algorithmus in Gerichteten Graphen}
+    Prims Algorithmus basiert auf der Annahme, dass alle Knoten von einem Knoten aus erreichbar sind.
+    In einem gerichteten Graphen $G$ ist dies nicht immer der Fall, z.B. wenn ein Knoten und eingehende Kanten hat.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[height=6cm]{a05a_prims_issue}
+        \caption{Problem bei Prim's Algorithmus. Quelle: \href{https://www.geeksforgeeks.org/why-prims-and-kruskals-mst-algorithm-fails-for-directed-graph/}{geeksforgeeks.org}}
+        \label{fig:a05_prim}
+    \end{figure}
+
+    \subsection{Prombleme mit Kruskals's Algorithmus in Gerichteten Graphen}
+    Kruskals Algorithmus überprüft in jeder Iteration, ob die zuletzt hinzugefügte Kante einen Kreis mit dem bestehenden MST bildet.
+    Jedoch kann es vorkommen, dass Kruskals Algorithmus einen Kreis in einem gerichteten Graphen nicht finden kann,
+    oder umgekehrt, einen Kreis in einem gerichtetem Graphen findet, in welchem es keinem gibt.
+    Dies liegt an der \texttt{Union-Find} Methode welch standardmäßig verwendet wird.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[height=6cm]{a05a_kruskals_issue}
+        \caption{Problem bei Kruskals's Algorithmus. Quelle: \href{https://www.geeksforgeeks.org/why-prims-and-kruskals-mst-algorithm-fails-for-directed-graph/}{geeksforgeeks.org}}
+        \label{fig:a05_kruskal}
+    \end{figure}
     \newpage
 
     \chapter{PageRank}
@@ -358,6 +395,9 @@ G.add_weighted_edges_from([
         \includegraphics[width=0.3\textwidth]{a06a_graph}
         \label{fig:a06_graph}
     \end{figure}
+
+
+
 
     \newpage
 

@@ -3,3 +3,4 @@ LICENSE
 **/*.tex
 images/*
 notebooks/**/*.ipynb
+notebooks/**/*.txt
