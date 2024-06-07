@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7fcd6f07-401f-4c2c-8b70-907ef82a193c" name="Changes" comment="update CI">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/aufgabe_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/aufgabe_1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/aufgabe_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/aufgabe_2.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="7fcd6f07-401f-4c2c-8b70-907ef82a193c" name="Changes" comment="exercise 4" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,6 +88,8 @@
     <MESSAGE value="finish ex 1" />
     <MESSAGE value="rm out folder" />
     <MESSAGE value="update CI" />
-    <option name="LAST_COMMIT_MESSAGE" value="update CI" />
+    <MESSAGE value="exercise 2" />
+    <MESSAGE value="exercise 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="exercise 4" />
   </component>
 </project>

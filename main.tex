@@ -223,18 +223,23 @@ def kruskal(G: nx.Graph):
     \label{ch:minSb}
     \begin{enumerate}
         \item Suchen Sie alle minimalen Spannbäume (MST) in folgendem Graph.
-        Welche Kosten weisen diese auf?
-        Stellen Sie die unterschiedlichen MST dar!
+        \item Welche Kosten weisen diese auf?
+        \item Stellen Sie die unterschiedlichen MST dar!
 
         \begin{figure}[H]
             \centering
-            \includegraphics[width=0.6\textwidth]{a03a_graph}
+            \includegraphics[height=0.3\textheight]{a03a_graph}
             \label{fig:a03_graph}
         \end{figure}
-        \item
-        \item Gegeben ein minimaler Spannbaum T von einem Graph $G$.
+
+        \item Gegeben ein minimaler Spannbaum $T$ von einem Graph $G$. \hfill
         Wie kann geprüft werden ob es weitere MST in $G$ gibt oder ob $T$ einzigartig ist?
     \end{enumerate}
+
+    \section{Lösung}
+
+
+
 
     \newpage
 
@@ -286,6 +291,52 @@ G.add_weighted_edges_from([
     ("Steyr", "Hagenberg",43.6)
 ])
     \end{minted}
+
+    \section{Lösung}
+
+    \begin{enumerate}[a)]
+        \item einen \hyperref[fig:a04_mst_and_highlight]{minimalen Spannbaum MST}
+        \begin{figure}[htbp]
+            \centering
+            \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[height=6cm]{a04a_mst}
+                \label{fig:a04_mst}
+            \end{subfigure}
+            \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[height=6cm]{a04a_graph_highlighted}
+                \label{fig:a04_graph_highlighted}
+            \end{subfigure}
+            \caption{Minimaler Spannbaum}
+            \label{fig:a04_mst_and_highlight}
+        \end{figure}
+
+        \item einen \hyperref[fig:a04_g2]{gerichteten Graphen $G2$} bei dem jede Verbindung in MST durch eine Hin- und
+        eine Zurückkante dargestellt wird
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[height=6cm]{a04a_g2}
+            \caption{Gerichter Graph G2}
+            \label{fig:a04_g2}
+        \end{figure}
+
+        \item einen \hyperref[fig:a04_euler]{Eulerkreis $k$ in $G2$} der in Linz beginnt und endet
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[height=6cm]{a04a_euler}
+            \caption{Eulerkreis in gerichter Graph G2 von Linz nach Linz}
+            \label{fig:a04_euler}
+        \end{figure}
+
+        \item einen \hyperref[fig:a04_hamilton]{Hamiltonkreis $r$ in $G$} in dem Sie $k$ folgen und bereits besuchte Knoten
+        überspringen
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[height=6cm]{a04a_hamilton_highlighted}
+            \caption{Hamilton Kreis im Graphen $G$}
+            \label{fig:a04_hamilton}
+        \end{figure}
+
+    \end{enumerate}
 
     \newpage
 
