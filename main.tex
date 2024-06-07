@@ -136,16 +136,18 @@ def prim(G: nx.Graph, start_node: Any):
     \begin{figure}[htbp]
         \centering
         \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=0.2\textheight]{a01a_mst}
+            \includegraphics[height=6cm]{a01a_mst}
             \caption{Minimal Spannbaum}
             \label{fig:a01_mst}
         \end{subfigure}
         \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=0.2\textheight]{a01a_graph_highlighted}
+            \includegraphics[height=6cm]{a01a_graph_highlighted}
             \caption{Minimaler Spannbaum auf dem Graphen}
             \label{fig:a01_graph_highlighted}
         \end{subfigure}
     \end{figure}
+
+    Die Kosten des Spannbaumes sind 19.
 
     \newpage
 
@@ -164,22 +166,56 @@ def prim(G: nx.Graph, start_node: Any):
         linenos,
         breaklines
     ]{python}
+def kruskal(G: nx.Graph):
+    mst = nx.Graph()
+    sorted_edges = sorted(G.edges(data=True), key=lambda x: x[2]['weight'])
+    parent = {}
+    rank = {}
 
+    def find(node):
+        if parent[node] != node:
+            parent[node] = find(parent[node])
+        return parent[node]
+
+    def union(node1, node2):
+        root1 = find(node1)
+        root2 = find(node2)
+        if root1 != root2:
+            if rank[root1] > rank[root2]:
+                parent[root2] = root1
+            else:
+                parent[root1] = root2
+                if rank[root1] == rank[root2]:
+                    rank[root2] += 1
+
+    for node in G.nodes():
+        parent[node] = node
+        rank[node] = 0
+
+    for edge in sorted_edges:
+        weight, frm, to = edge[2]['weight'], edge[0], edge[1]
+        if find(frm) != find(to):
+            union(frm, to)
+            mst.add_edge(frm, to, weight=weight)
+
+    return mst
     \end{minted}
 
     \begin{figure}[htbp]
         \centering
         \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=0.2\textheight]{a01a_mst}
+            \includegraphics[height=6cm]{a02a_mst}
             \caption{Minimal Spannbaum}
             \label{fig:a02_mst}
         \end{subfigure}
         \begin{subfigure}[b]{0.3\textwidth}
-            \includegraphics[height=0.2\textheight]{a01a_graph_highlighted}
+            \includegraphics[height=6cm]{a02a_graph_highlighted}
             \caption{Minimaler Spannbaum auf dem Graphen}
             \label{fig:a02_graph_highlighted}
         \end{subfigure}
     \end{figure}
+
+    Die Kosten des Spannbaumes sind 19.
 
     \newpage
 
