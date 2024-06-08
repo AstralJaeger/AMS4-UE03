@@ -19,6 +19,8 @@
 \usepackage{wrapfig}
 \usepackage{minted}
 \usepackage{subcaption}
+\usepackage{placeins}
+
 \usemintedstyle{vs}
 
 % Set default font to OpenSans
@@ -247,9 +249,90 @@ def kruskal(G: nx.Graph):
 
     \section{Lösung}
 
+    \subsection{Spannbaum 1 - Kosten: 20}\label{subsec:spannbaum-1---kosten:-20}
 
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_1}
+            \caption{Minimaler Spannbaum}
+            \label{fig:a03_mst_01}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_1_highlighted}
+            \caption{Minimaler Spannbaum auf dem Graphen}
+            \label{fig:a03_mst_01_highlighted}
+        \end{subfigure}
+        \caption{Gegenüberstellung des Spannbaums und des Graphen}
+        \label{fig:a03_01}
+    \end{figure}
+    \FloatBarrier
 
+    \subsection{Spannbaum 2 - Kosten: 20}\label{subsec:spannbaum-2---kosten:-20}
 
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_2}
+            \caption{Minimaler Spannbaum}
+            \label{fig:a03_mst_02}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_2_highlighted}
+            \caption{Minimaler Spannbaum auf dem Graphen}
+            \label{fig:a03_mst_02_highlighted}
+        \end{subfigure}
+        \caption{Gegenüberstellung des Spannbaums und des Graphen}
+        \label{fig:a03_02}
+    \end{figure}
+    \FloatBarrier
+
+    \subsection{Spannbaum 3 - Kosten: 20}\label{subsec:spannbaum-3---kosten:-20}
+
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_3}
+            \caption{Minimaler Spannbaum}
+            \label{fig:a03_mst_03}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_3_highlighted}
+            \caption{Minimaler Spannbaum auf dem Graphen}
+            \label{fig:a03_mst_03_highlighted}
+        \end{subfigure}
+        \caption{Gegenüberstellung des Spannbaums und des Graphen}
+        \label{fig:a03_03}
+    \end{figure}
+    \FloatBarrier
+
+    \subsection{Spannbaum 4 - Kosten: 40}\label{subsec:spannbaum-4---kosten:-40}
+
+    \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_4}
+            \caption{Minimaler Spannbaum}
+            \label{fig:a03_mst_04}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth, height=6cm, keepaspectratio]{a03a_mst_4_highlighted}
+            \caption{Minimaler Spannbaum auf dem Graphen}
+            \label{fig:a03_mst_04_highlighted}
+        \end{subfigure}
+        \caption{Gegenüberstellung des Spannbaums und des Graphen}
+        \label{fig:a03_04}
+    \end{figure}
+    \FloatBarrier
+    
     \newpage
 
     \chapter{Die MST-Heuristik für das TSP}

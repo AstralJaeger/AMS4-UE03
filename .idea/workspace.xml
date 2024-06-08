@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7fcd6f07-401f-4c2c-8b70-907ef82a193c" name="Changes" comment="add exercise 6">
-      <change afterPath="$PROJECT_DIR$/notebooks/aufgabe_7.ipynb" afterDir="false" />
+    <list default="true" id="7fcd6f07-401f-4c2c-8b70-907ef82a193c" name="Changes" comment="add exercise 7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/a04a_hamilton.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/a04a_hamilton.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/a07a_graph.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/a07a_graph.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/aufgabe_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/aufgabe_1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/aufgabe_2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/aufgabe_2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/a07a_probability.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/notebooks/aufgabe_3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/aufgabe_3.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/aufgabe_4.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/aufgabe_4.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notebooks/aufgabe_6.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/aufgabe_6.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,6 +126,7 @@
     <MESSAGE value="fix includegrafics issue" />
     <MESSAGE value="add exercise 06" />
     <MESSAGE value="add exercise 6" />
-    <option name="LAST_COMMIT_MESSAGE" value="add exercise 6" />
+    <MESSAGE value="add exercise 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="add exercise 7" />
   </component>
 </project>
